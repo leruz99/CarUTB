@@ -8,5 +8,7 @@ router.post('/login', LoginController.auth);
 router.get('/register', LoginController.register);
 router.post('/register', LoginController.storeUser);
 router.get('/logout', LoginController.logout);
+router.post('/add',  LoginController.addCar);
+
 
 module.exports = router;

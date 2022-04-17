@@ -10,6 +10,10 @@ function login(req , res){
     }
     
 }
+function addCar(req, res){
+    const data = req.data;
+    console.log(data);
+}
 function auth(req, res){
     const data = req.body;
 
@@ -84,4 +88,5 @@ module.exports = {
     storeUser,
     auth,
     logout,
+    addCar,
 }
