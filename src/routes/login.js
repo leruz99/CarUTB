@@ -8,7 +8,10 @@ router.post('/login', LoginController.auth);
 router.get('/register', LoginController.register);
 router.post('/register', LoginController.storeUser);
 router.get('/logout', LoginController.logout);
-router.post('/add',  LoginController.addCar);
+router.get('/add',  LoginController.addCar);
+router.post('/add', LoginController.addStore);
+router.get('/mycar', LoginController.mycarlist);
+router.get('/add', LoginController.addYourCar);
 
 
 module.exports = router;

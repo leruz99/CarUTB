@@ -46,5 +46,6 @@ app.get('/', (req, res) => {
         res.render('home', {name: req.session.name});
     }else{
         res.redirect('/login' );
+        
     }
 })

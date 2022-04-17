@@ -1,5 +1,6 @@
 const { hash } = require('bcrypt');
 const  bcript = require('bcrypt');
+const { send } = require('express/lib/response');
 
 
 function login(req , res){
@@ -11,9 +12,38 @@ function login(req , res){
     
 }
 function addCar(req, res){
-    const data = req.data;
-    console.log(data);
+    res.render('car/add');
+    
 }
+function addStore(req, res){
+    
+    const {matricula, tipo} = req.body;
+    const newList = {
+        matricula,
+        tipo,
+
+    };
+    console.log(newList);
+    req.getConnection((err, conn) => {
+        conn.query('INSERT INTO cars SET ?', [newList]);
+        res.redirect('/add');
+        req.session.loggedin = true; //no estoy seguro
+        
+    });
+}
+function mycarlist(req, res){
+    req.getConnection((err, conn) => {
+        conn.query('SELECT * FROM cars', (err, userdata) => {
+            res.render('car/mycar', {userdata: userdata});
+            
+            
+            
+        });
+        
+        
+    });
+}
+
 function auth(req, res){
     const data = req.body;
 
@@ -80,6 +110,9 @@ function logout(req, res){
     }
     res.redirect('/login');
 }
+function addYourCar(req, res){
+    res.redirect('/add');
+}
 
 
 module.exports = {
@@ -89,4 +122,7 @@ module.exports = {
     auth,
     logout,
     addCar,
+    addStore,
+    mycarlist,
+    addYourCar,
 }
