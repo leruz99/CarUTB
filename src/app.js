@@ -3,7 +3,9 @@ const {engine} = require('express-handlebars');
 const myconnection = require('express-myconnection');
 const mysql = require('mysql');
 const session = require('express-session');
+
 const bodyParser = require('body-parser');
+const mysqlstore = require('express-mysql-session');
 
 const loginRoutes = require('./routes/login');
 
@@ -32,7 +34,8 @@ app.use(myconnection(mysql, {
 app.use(session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    /* store: new mysqlstore(database) */
 }));
 
 app.listen(app.get('port'), () => {
