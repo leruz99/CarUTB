@@ -13,6 +13,7 @@ function login(req , res){
     
 }
 function addYourCar(req, res){
+    /* req.session.loggedin = true; */
     res.render('car/add');
 }
 function addCar(req, res){
@@ -20,6 +21,7 @@ function addCar(req, res){
         res.redirect('/login');
         
     }else{
+        
         res.render('car/add');
     }
     
